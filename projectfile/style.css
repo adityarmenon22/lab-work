@@ -1,0 +1,113 @@
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background: navy;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+/* Nav Bar */
+nav {
+    margin-top: 10px;
+}
+nav a {
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+nav a:hover {
+    background: royalblue;
+}
+
+/* Main Sections */
+section {
+    max-width: 600px;
+    background: white;
+    margin: 30px auto;
+    padding: 18px;
+    border-radius: 7px;
+    box-shadow: 0 2px 6px lightgray;
+}
+h2 {
+    color: navy;
+}
+
+/* Profile Image */
+.profile-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px gray;
+}
+
+/* Skills Table */
+table {
+    width: 100%;
+    margin: 12px 0;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid royalblue;
+    padding: 8px;
+    text-align: center;
+}
+tr:nth-child(even) {
+    background: lavender;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    background: navy;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+button:hover {
+    background: royalblue;
+}
+
+/* Form fields */
+form input, form textarea {
+    width: 95%;
+    padding: 8px;
+    margin: 7px 0;
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+
+hr {
+    border: 1px solid silver;
+    margin: 32px 0;
+}
+
+/* Back to top button fixed position example */
+#back-to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 30px;
+    background: navy;
+    border-radius: 40px;
+    font-size: 15px;
+    padding: 10px 18px;
+    z-index: 999;
+    box-shadow: 0 2px 5px white;
+}
+#back-to-top:hover {
+    background: royalblue;
+}

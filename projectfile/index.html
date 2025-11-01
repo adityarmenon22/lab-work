@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts example -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>My Portfolio</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <img src="profile.jpg" alt="Profile Photo" class="profile-image">
+        <p>Hello! I am Adity R Menon a BTech Computer Science Engineering student learning HTML and CSS. This is my beginner portfolio for Lab Assignment 2.</p>
+    </section>
+
+    <section id="skills">
+        <h2>My Skills</h2>
+        <table>
+            <tr>
+                <th>Skill</th>
+                <th>Level</th>
+            </tr>
+            <tr>
+                <td>Python</td>
+                <td>Beginner</td>
+            </tr>
+            <tr>
+                <td>HTML/CSS</td>
+                <td>Beginner</td>
+            </tr>
+            <tr>
+                <td>Teamwork</td>
+                <td>Intermediate</td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+            <li>Simple Calculator in Python</li>
+            <li>Personal Website (this one!)</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Message"></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <hr>
+
+    <footer>
+        <p>&copy; 2025 My Portfolio</p>
+        <button id="back-to-top">Back to Top</button>
+    </footer>
+
+    <script>
+      // Basic back to top button
+      document.getElementById('back-to-top').onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+    </script>
+</body>
+</html>
