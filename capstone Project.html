@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FintechX Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: rgb(99,91,255);
+      --primary-dark: rgb(39,37,106);
+      --sidebar-bg: rgb(32,33,44);
+      --bg: rgb(246,248,250);
+      --card-bg: rgb(255,255,255);
+      --card-shadow: 0 2px 24px 0 rgba(44,62,80,0.08);
+      --accent: rgb(21,228,194);
+      --border: rgb(236,236,236);
+      --text: rgb(34,34,59);
+      --muted: rgb(117,117,117);
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      margin: 0; padding: 0;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+    }
+    .sidebar {
+      width: 64px;
+      background: var(--sidebar-bg);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.6rem 0;
+      gap: 2rem;
+      box-shadow: 2px 0 12px rgba(44,62,80,.06);
+    }
+    .sidebar .logo {
+      margin-bottom: 2rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: bold;
+      font-size: 1.16em;
+      color: var(--primary);
+      letter-spacing: 2px;
+      text-align: center;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+      width: 100%;
+      align-items: center;
+    }
+    .sidebar nav a {
+      color: rgb(170,170,170);
+      text-decoration: none;
+      padding: 0.5rem;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.3em;
+      transition: background 0.18s, color 0.15s, transform 0.15s;
+    }
+    .sidebar nav a:hover, .sidebar nav a.active {
+      background: var(--primary);
+      color: #fff;
+      transform: scale(1.13);
+    }
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .topbar {
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(44,62,80,.05);
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .topbar .app-name {
+      font-weight: 600;
+      font-size: 1.22rem;
+      color: var(--primary);
+      letter-spacing: 1px;
+    }
+    .topbar .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 0.9em;
+    }
+    .greet-user {
+      font-size: 1.02em;
+      font-weight: 500;
+      color: var(--primary-dark);
+    }
+    .dashboard {
+      flex: 1;
+      padding: 2.2rem 2.6vw 1rem 2.6vw;
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+    .dashboard-cards {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .dashboard-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      padding: 2rem 1.7rem 1.5rem 2rem;
+      min-width: 250px;
+      flex: 1 1 250px;
+      transition: transform .17s, box-shadow .17s;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .dashboard-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -56px;
+      width: 120px; height: 120px;
+      background: linear-gradient(140deg, rgba(99,91,255,0.18) 50%, rgba(99,91,255,0));
+      border-radius: 50%;
+      z-index: 0;
+    }
+    .dashboard-card:hover {
+      transform: translateY(-6px) scale(1.025);
+      box-shadow: 0 10px 32px rgba(44,62,80,0.19);
+      border-color: var(--primary);
+    }
+    .card-label {
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 1.4rem;
+      letter-spacing: 0.3px;
+      z-index: 2;
+      position: relative;
+    }
+    .dashboard-card .amount {
+      font-size: 2.05rem;
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: .5rem;
+      z-index: 2;
+      position: relative;
+    }
+    .dashboard-card .card-foot {
+      font-size: .97em;
+      color: var(--muted);
+      z-index: 2;
+      position: relative;
+    }
+    .transactions-block {
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      padding: 1.4rem 2rem 1.3rem 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border);
+    }
+    .transactions-block h3 {
+      font-size: 1.15em;
+      margin-bottom: .8rem;
+      color: var(--primary-dark);
+      letter-spacing: 0.5px;
+    }
+    .transactions-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1em;
+    }
+    .transactions-table th, .transactions-table td {
+      padding: .67em 0.6em;
+      text-align: left;
+    }
+    .transactions-table th {
+      color: var(--muted);
+      font-weight: 600;
+      border-bottom: 2px solid var(--border);
+    }
+    .transactions-table tr {
+      transition: background 0.20s;
+    }
+    .transactions-table tr:hover {
+      background: rgb(241,244,252);
+    }
+    .transactions-table td.amount-pos {
+      color: rgb(29,209,124);
+      font-weight: 600;
+    }
+    .transactions-table td.amount-neg {
+      color: rgb(247,51,98);
+      font-weight: 600;
+    }
+    @media (max-width: 1200px) {
+      .dashboard-cards {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+    @media (max-width: 700px) {
+      .dashboard {
+        padding: 1rem 2vw;
+      }
+      .transactions-block { padding: 1rem 0.6rem 0.7rem 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">FinX</div>
+    <nav>
+      <a href="#" class="active" title="Dashboard">🏠</a>
+      <a href="#" title="Analytics">📊</a>
+      <a href="#" title="Transfers">💸</a>
+      <a href="#" title="Cards">💳</a>
+      <a href="#" title="Settings">⚙️</a>
+    </nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <span class="app-name">FintechX Dashboard</span>
+      <div class="user-profile">
+        <span class="greet-user">Hey, Aditya</span>
+      </div>
+    </div>
+    <section class="dashboard">
+      <div class="dashboard-cards">
+        <div class="dashboard-card">
+          <div class="card-label">Balance</div>
+          <div class="amount">₹83,200.00</div>
+          <div class="card-foot">Updated 1 min ago</div>
+        </div>
+        <div class="dashboard-card">
+          <div class="card-label">Income</div>
+          <div class="amount" style="color: rgb(29,209,124);">+ ₹45,000</div>
+          <div class="card-foot">Nov Salary</div>
+        </div>
+        <div class="dashboard-card">
+          <div class="card-label">Spend</div>
+          <div class="amount" style="color: rgb(247,51,98);">- ₹5,100</div>
+          <div class="card-foot">This month</div>
+        </div>
+        <div class="dashboard-card">
+          <div class="card-label">Active Cards</div>
+          <div class="amount" style="color: rgb(255,179,0);">3</div>
+          <div class="card-foot">VISA & Mastercard</div>
+        </div>
+      </div>
+      <div class="transactions-block">
+        <h3>Recent Transactions</h3>
+        <table class="transactions-table">
+          <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Amount</th>
+          </tr>
+          <tr>
+            <td>Nov 17</td>
+            <td>Online Transfer</td>
+            <td>Completed</td>
+            <td class="amount-neg">- ₹8,000</td>
+          </tr>
+          <tr>
+            <td>Nov 13</td>
+            <td>Salary</td>
+            <td>Received</td>
+            <td class="amount-pos">+ ₹45,000</td>
+          </tr>
+          <tr>
+            <td>Nov 12</td>
+            <td>Amazon Shopping</td>
+            <td>Completed</td>
+            <td class="amount-neg">- ₹2,400</td>
+          </tr>
+          <tr>
+            <td>Nov 10</td>
+            <td>Mobile Bill</td>
+            <td>Completed</td>
+            <td class="amount-neg">- ₹700</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
